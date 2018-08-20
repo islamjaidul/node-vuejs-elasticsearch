@@ -58,7 +58,7 @@ export default {
             });
         },
         handleInfo(id) {
-            const URL = 'http://localhost:3000/elastic-data/' + id;
+            const URL = baseUrl + id;
             this.loading = true;
             axios.get(URL)
                 .then((res) => {
@@ -73,7 +73,7 @@ export default {
             const isConfirmed = confirm("Are you sure to delete ?");
 
             if (isConfirmed) {
-                const URL = 'http://localhost:3000/elastic-data/' + id;
+                const URL = baseUrl + id;
                 axios.delete(URL)
                     .then((res) => {
                         this.tableData();

@@ -42,7 +42,7 @@ export default {
                 email: this.email
             };
            
-                axios.post('http://localhost:3000/elastic-data', payload)
+                axios.post(baseUrl, payload)
                 .then((response) => {
                    this.handleBack()
                 })
