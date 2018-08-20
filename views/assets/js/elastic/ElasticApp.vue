@@ -73,7 +73,7 @@ export default {
             const isConfirmed = confirm("Are you sure to delete ?");
 
             if (isConfirmed) {
-                const URL = baseUrl + id;
+                const URL = `${baseUrl}/elastic-data/${id}`;
                 axios.delete(URL)
                     .then((res) => {
                         this.tableData();
