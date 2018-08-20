@@ -19,6 +19,12 @@ var {User} = require('./app/Models/User');
 console.log("Running in port 3000");
 app.listen(3000);
 
+app.get('/', (req, res) => {
+	res.json({
+		message: "Hello world"
+	});
+})
+
 app.get('/user', (req, res) => {
 	res.render('hbs/user.hbs');
 })
