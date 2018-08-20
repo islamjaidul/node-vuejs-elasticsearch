@@ -41,7 +41,7 @@ export default {
                 full_name: `${this.first_name} ${this.last_name}`,
                 email: this.email
             };
-            const URL = `${baseURL}/elastic-data`;
+            const URL = `${baseUrl}/elastic-data`;
                 axios.post(URL, payload)
                 .then((response) => {
                    this.handleBack()
