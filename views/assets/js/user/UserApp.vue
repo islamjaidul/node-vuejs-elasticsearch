@@ -69,7 +69,7 @@
 		},
 		methods: {
 			handleSave() {
-				const URL = baseUrl + 'user';
+				const URL = `${baseUrl}/user`;
 				axios.post(URL, this.form)
 					.then((res) => {
 						console.log(res.data);
@@ -91,7 +91,7 @@
 				})
 			},
 			getUsers() {
-				const URL = baseUrl + 'all-users';
+				const URL = `${baseUrl}/all-users`;
 				axios.get(URL)
 					.then((res) => {
 						this.users = res.data;

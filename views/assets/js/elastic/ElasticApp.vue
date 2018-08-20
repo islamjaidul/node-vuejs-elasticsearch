@@ -58,7 +58,7 @@ export default {
             });
         },
         handleInfo(id) {
-            const URL = baseUrl + id;
+            const URL = `${baseUrl}/elastic-data/${id}`;
             this.loading = true;
             axios.get(URL)
                 .then((res) => {
@@ -85,7 +85,7 @@ export default {
         },
         tableData() {
             setTimeout(() => {
-                const URL = 'http://localhost:3000/elastic-data';
+                const URL = `${baseUrl}/elastic-data`;
                 axios.get(URL)
                     .then((res) => {
                         this.persons = res.data.data

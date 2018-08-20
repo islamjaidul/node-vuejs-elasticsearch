@@ -14,7 +14,7 @@
 			}
 		},
 		mounted() {
-			const URL = `${baseUrl}${this.$route.params.userId}`;
+			const URL = `${baseUrl}/user/${this.$route.params.userId}`;
 				axios.get(URL)
 					.then((res) => {
 						this.singleUser = res.data;
