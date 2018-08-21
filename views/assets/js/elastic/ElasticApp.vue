@@ -5,6 +5,22 @@
             <strong>Total: {{ persons.length }}</strong>
             <div class="row">
                 <div class="col-md-7">
+                    <!-- Search and Pagination Start -->
+                    <div class="row padding-bottom">
+                        <div class="col-md-6">
+                            <input type="text" style="width: 300px" v-model="search" class="form-control" placeholder="Search...">
+                        </div>
+                        <div class="col-md-6">
+                            <select @change="tableData" style="width: 70px" class="form-control pull-right" v-model="perPage">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                     <!-- Search and Pagination End -->
+
+                     <!-- Table Start -->
                      <table class="table table-bordered">
                         <thead>
                             <th>First Name</th>
@@ -24,6 +40,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    <!-- Table End -->
                 </div>
                 <div class="col-md-5">
                       <button @click="handleCreate" class="btn btn-primary btn-sm pull-right">Create</button>
@@ -44,11 +61,20 @@
 export default {
     data() {
         return {
+            search: '',
+            perPage: 1,
             persons: [],
             singlePerson: {
 
             },
             loading: false,
+        }
+    },
+    watch: {
+        search() {
+            if (this.search.length > 1 || this.search.length == 0) {
+                this.tableData();
+            }
         }
     },
     methods: {
@@ -85,8 +111,12 @@ export default {
         },
         tableData() {
             setTimeout(() => {
-                const URL = `${baseUrl}/elastic-data`;
-                axios.get(URL)
+                const URL = `${baseUrl}/elastic-data?perPage=${this.perPage}`;
+                let payload = {};
+                if (this.search.length) {
+                    payload.search = this.search
+                }
+                axios.get(URL, {params: payload})
                     .then((res) => {
                         this.persons = res.data.data
                     })
@@ -102,6 +132,9 @@ export default {
 <style lang="scss">
     .pull-right {
         float: right !important;
+    }
+    .padding-bottom {
+        padding-bottom: 10px;
     }
 </style>
 

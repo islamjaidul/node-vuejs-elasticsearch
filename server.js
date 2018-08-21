@@ -47,14 +47,20 @@ app.get('/all-users', (req, res) => {
 })
 
 app.get('/elastic-data', (req, res) => {
-	const dsl = {
-		query: {
-			match_all: {
-				
+	let dsl = {
+		from: 0,
+		size: req.query.perPage
+	};
+
+	if (req.query.search) {
+		dsl.query = {
+			match: {
+				email: req.query.search
 			}
 		}
-	};
-	const URL = 'https://t7xq0569xx:fdndydi74l@jaiduls-first-sandbo-4682322014.us-west-2.bonsaisearch.net/customers/_search?size=100';
+	}
+
+	const URL = 'https://t7xq0569xx:fdndydi74l@jaiduls-first-sandbo-4682322014.us-west-2.bonsaisearch.net/customers/_search';
 	axios.get(URL, {
 		params: {
 			source: dsl,
